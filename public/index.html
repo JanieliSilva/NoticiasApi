@@ -3,106 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Atualiza</title>
+<title>Atualiza | Notícias sobre IA, redes sociais e cognição</title>
+<meta name="description" content="Notícias em português sobre inteligência artificial, redes sociais, atenção e cognição, atualizadas o dia todo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#e9eef5;--ink:#0b1220;--muted:#56617a;--line:#cbd4e3;--accent:#2b4bff;--live:#12b76a;--panel:#f7f9fc}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--ink:#eaf0ff;--muted:#8d9ab8;--line:#232e48;--accent:#7f95ff;--live:#3ddc97;--panel:#111a2e}}
-:root[data-theme="dark"]{--bg:#0b1220;--ink:#eaf0ff;--muted:#8d9ab8;--line:#232e48;--accent:#7f95ff;--live:#3ddc97;--panel:#111a2e}
-*{box-sizing:border-box}
-html{height:100%}
-body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Instrument Sans",system-ui,sans-serif}
-a{color:inherit;text-decoration:none}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(16px,4vw,32px)}
-
-/* topo */
-.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
-.brand{font:800 1.35rem "Unbounded",system-ui,sans-serif;letter-spacing:-.03em;display:flex;align-items:center;gap:10px}
-.dot{width:12px;height:12px;border-radius:50%;background:var(--live);box-shadow:0 0 0 0 var(--live);animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--live) 60%,transparent)}70%,100%{box-shadow:0 0 0 12px transparent}}
-.stamp{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--muted)}
-.btn{font:500 .9rem "Instrument Sans",sans-serif;padding:8px 14px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
-.btn:hover{background:var(--ink);color:var(--bg)}
-.btn.spin::before{content:"";display:inline-block;width:10px;height:10px;margin-right:8px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:rot .7s linear infinite}
-@keyframes rot{to{transform:rotate(360deg)}}
-
-/* destaque */
-.hero{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(20px,4vw,48px);align-items:end;padding:clamp(32px,7vw,80px) 0 clamp(28px,5vw,56px)}
-.live{display:inline-flex;align-items:center;gap:8px;font:600 .95rem "Instrument Sans",sans-serif;color:var(--accent)}
-.hero h1{font:800 clamp(2rem,5.6vw,4.6rem)/1.02 "Unbounded",system-ui,sans-serif;letter-spacing:-.04em;margin:14px 0 18px;text-wrap:balance}
-.hero h1 a:hover{color:var(--accent)}
-.hero p{color:var(--muted);max-width:56ch;margin:0 0 20px;font-size:1.05rem}
-.hero .pic{aspect-ratio:4/5;background:var(--line);overflow:hidden;clip-path:polygon(0 0,84% 0,100% 12%,100% 100%,0 100%)}
-.hero .pic img{width:100%;height:100%;object-fit:cover;display:block}
-.go{display:inline-block;padding:12px 20px;border-radius:999px;background:var(--accent);color:#fff;font-weight:600}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .go{color:#0b1220}}
-
-/* filtros */
-.bar{position:sticky;top:0;z-index:5;background:var(--bg);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-input[type=search]{flex:1 1 220px;min-width:0;padding:10px 14px;font:inherit;color:var(--ink);background:var(--panel);border:1.5px solid var(--line);border-radius:10px}
-input[type=search]:focus{border-color:var(--accent)}
-.chips{display:flex;gap:8px;overflow-x:auto;max-width:100%;padding-bottom:2px}
-.chip{flex:none;font:500 .9rem "Instrument Sans",sans-serif;padding:7px 14px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
-.chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
-
-/* linha do tempo */
-.status{color:var(--muted);margin:24px 0 0}
-.status.erro{color:#d33;font-weight:600}
-.group{display:grid;grid-template-columns:170px 1fr;gap:24px;padding:28px 0;border-bottom:1px solid var(--line)}
-.group>h2{position:sticky;top:76px;align-self:start;margin:0;font:500 .85rem "Unbounded",system-ui,sans-serif;letter-spacing:-.01em;color:var(--muted)}
-.row{display:grid;grid-template-columns:84px 1fr 96px;gap:16px;align-items:start;padding:16px 0;border-top:1px solid var(--line)}
-.row:first-child{border-top:0;padding-top:0}
-.time{font-size:.85rem;color:var(--muted);padding-top:.5em;font-variant-numeric:tabular-nums}
-.row h3{margin:0 0 6px;font:600 clamp(1.15rem,2.2vw,1.7rem)/1.2 "Instrument Sans",sans-serif;letter-spacing:-.01em;text-wrap:balance}
-.row:hover h3{color:var(--accent)}
-.meta{font-size:.85rem;color:var(--muted)}
-.meta b{color:var(--ink);font-weight:600}
-.novo{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:999px;background:var(--live);color:#04140c;font-size:.72rem;font-weight:600}
-.mini{width:96px;aspect-ratio:1;border-radius:10px;object-fit:cover;background:var(--line)}
-.peek{position:fixed;left:0;top:0;width:280px;aspect-ratio:4/3;border-radius:14px;overflow:hidden;pointer-events:none;opacity:0;z-index:20;box-shadow:0 20px 50px rgba(0,0,0,.35);transition:opacity .15s}
-.peek.on{opacity:1}
-.peek img{width:100%;height:100%;object-fit:cover;display:block}
-@media (hover:hover) and (min-width:900px){.mini{display:none}.row{grid-template-columns:84px 1fr}}
-@media (max-width:899px){.peek{display:none}}
-@media (max-width:720px){.hero{grid-template-columns:1fr}.hero .pic{aspect-ratio:16/9}.group{grid-template-columns:1fr;gap:12px}.group>h2{position:static}.row{grid-template-columns:1fr 84px}.row .time{grid-column:1/-1;padding:0}.mini{width:84px}.stamp span{display:none}}
-@media (prefers-reduced-motion:reduce){.dot,.btn.spin::before{animation:none}.peek{transition:none}}
-footer{padding:32px 0 56px;color:var(--muted);font-size:.85rem}
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="wrap">
-  <div class="top">
-    <div class="brand"><span class="dot" aria-hidden="true"></span>atualiza</div>
-    <div class="stamp"><span id="stamp">Carregando...</span><button class="btn" id="refresh" type="button">Atualizar</button></div>
+<div class="topbar">
+  <div class="wrap topbar__in">
+    <span id="data"></span>
+    <span class="trending" id="trending" hidden><b>Em alta</b><a id="trend" href="#" target="_blank" rel="noopener noreferrer"></a></span>
+    <a class="gh" href="https://github.com/JanieliSilva/NoticiasApi" target="_blank" rel="noopener noreferrer">GitHub</a>
   </div>
-
-  <section class="hero" id="hero" aria-live="polite"></section>
-
-  <div class="bar">
-    <input type="search" id="busca" placeholder="Buscar por título ou fonte" aria-label="Buscar notícias">
-    <div class="chips" id="chips" role="group" aria-label="Filtrar por tema"></div>
-  </div>
-
-  <p class="status" id="status" role="status"></p>
-  <main id="lista"></main>
-  <footer>As notícias se atualizam sozinhas a cada 5 minutos.</footer>
 </div>
-<div class="peek" id="peek" aria-hidden="true"><img alt=""></div>
 
+<header class="site">
+  <div class="wrap site__in">
+    <a class="brand" href="/"><span class="logo" aria-hidden="true"></span>atualiza</a>
+    <div class="search"><input type="search" id="busca" placeholder="Buscar por título ou fonte" aria-label="Buscar notícias"></div>
+    <div class="actions"><span id="stamp">Carregando...</span><button class="btn" id="refresh" type="button">Atualizar</button></div>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs" aria-label="Temas" hidden>
+  <div class="wrap"><div class="tabs__in" id="chips"></div></div>
+</nav>
+
+<main class="wrap">
+  <p class="status" id="status" role="status"></p>
+  <section class="feature" id="feature" aria-live="polite"></section>
+  <div class="split" id="split" hidden>
+    <section id="miss" hidden></section>
+    <aside id="top" hidden></aside>
+  </div>
+  <section id="mais" hidden></section>
+  <section id="results" hidden></section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <span class="brand"><span class="logo" aria-hidden="true"></span>atualiza</span>
+    <span>Atualiza sozinho a cada 5 minutos. Notícias via NewsAPI.</span>
+  </div>
+</footer>
 <script>
 const $ = (id) => document.getElementById(id);
 const REFRESH_MS = 5 * 60 * 1000;
-let todas = [], vistas = new Set(), temaAtivo = "Todos", ultimaAtualizacao = 0;
+let todas = [], vistas = new Set(), temaAtivo = "Todos", ultima = 0;
 
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; }
 
 // Aceita português ou formato NewsAPI.
 function normaliza(n) {
   const f = (n.fonte && n.fonte.name) || n.fonte || (n.source && n.source.name) || n.source || "";
-  const d = n.data || n.publishedAt || n.publicadoEm || "";
-  const t = Date.parse(d);
+  const t = Date.parse(n.data || n.publishedAt || n.publicadoEm || "");
   return {
     titulo: n.titulo || n.title || "Sem título",
     descricao: n.descricao || n.description || "",
@@ -125,74 +81,99 @@ function rel(t) {
   return new Date(t).toLocaleDateString("pt-BR", { day: "2-digit", month: "short" });
 }
 
-function grupo(t) {
-  if (!t) return "Notícias";
-  const agora = Date.now(), dia = 864e5;
-  if (agora - t < 36e5) return "Na última hora";
-  const ini = new Date(); ini.setHours(0, 0, 0, 0);
-  if (t >= ini.getTime()) return "Hoje";
-  if (t >= ini.getTime() - dia) return "Ontem";
-  return "Antes disso";
+/* ---------- blocos reutilizáveis ---------- */
+function link(cls, n) { const a = el("a", cls); a.href = n.url; a.target = "_blank"; a.rel = "noopener noreferrer"; return a; }
+function foto(n, cls) {
+  if (!n.imagem) return null;
+  const im = el("img", cls); im.src = n.imagem; im.alt = ""; im.loading = "lazy"; im.onerror = () => im.remove(); return im;
 }
-
-function linha(n) {
-  const a = el("a", "row"); a.href = n.url; a.target = "_blank"; a.rel = "noopener noreferrer";
-  const tm = el("span", "time", rel(n.t)); tm.dataset.t = n.t; a.appendChild(tm);
-  const corpo = el("div");
-  corpo.appendChild(el("h3", "", n.titulo));
+function meta(n) {
   const m = el("div", "meta");
-  if (n.tema) { m.appendChild(el("b", "", n.tema)); m.append(n.fonte ? " · " : ""); }
-  m.append(n.fonte);
+  if (n.fonte) m.appendChild(el("span", "", n.fonte));
+  if (n.t) { const s = el("span", "time", rel(n.t)); s.dataset.t = n.t; m.appendChild(s); }
   if (n.novo) m.appendChild(el("span", "novo", "nova"));
-  corpo.appendChild(m); a.appendChild(corpo);
-  if (n.imagem) {
-    const im = el("img", "mini"); im.src = n.imagem; im.alt = ""; im.loading = "lazy"; im.onerror = () => im.remove();
-    a.appendChild(im);
-    a.addEventListener("mouseenter", () => { $("peek").firstChild.src = n.imagem; $("peek").classList.add("on"); });
-    a.addEventListener("mouseleave", () => $("peek").classList.remove("on"));
-  }
-  return a;
+  return m;
+}
+function titulo(txt) { const d = el("div", "section-title"); d.appendChild(el("h2", "", txt)); return d; }
+
+function hero(n) {
+  const a = el("article", "hero"), f = foto(n); if (f) a.appendChild(f);
+  const b = el("div", "hero__body");
+  b.appendChild(el("span", "tag", n.tema || "Em destaque"));
+  const h = el("h1"), l = link("", n); l.textContent = n.titulo; h.appendChild(l); b.appendChild(h);
+  if (n.descricao) b.appendChild(el("p", "", n.descricao));
+  b.appendChild(meta(n));
+  const go = link("go", n); go.textContent = "Ler matéria"; b.appendChild(go);
+  a.appendChild(b); return a;
+}
+function painel(lista) {
+  const p = el("aside", "panel"); p.appendChild(titulo("Mais recentes"));
+  lista.forEach((n) => { const a = link("prow", n); a.appendChild(el("h3", "", n.titulo)); a.appendChild(meta(n)); p.appendChild(a); });
+  return p;
+}
+function tile(n, grande) {
+  const a = link("tile" + (grande ? " tile--big" : ""), n), f = foto(n); if (f) a.appendChild(f);
+  if (n.tema) a.appendChild(el("span", "tag", n.tema));
+  const b = el("div", "tile__body"); b.appendChild(el("h3", "", n.titulo)); b.appendChild(meta(n));
+  a.appendChild(b); return a;
+}
+function card(n) {
+  const a = link("card", n), f = foto(n, "card__img");
+  a.appendChild(f || el("div", "card__ph"));
+  const b = el("div", "card__body");
+  if (n.tema) b.appendChild(el("span", "tag", n.tema));
+  b.appendChild(el("h3", "", n.titulo)); b.appendChild(meta(n));
+  a.appendChild(b); return a;
+}
+const gradeBento = (l) => { const g = el("div", "bento"); l.forEach((n, i) => g.appendChild(tile(n, i === 0))); return g; };
+const gradeCards = (l) => { const g = el("div", "cards"); l.forEach((n) => g.appendChild(card(n))); return g; };
+function listaTop(l) {
+  const o = el("ol", "toplist");
+  l.forEach((n, i) => {
+    const li = el("li"), a = link("trow", n); a.appendChild(el("span", "num", String(i + 1)));
+    const c = el("div"); c.appendChild(el("h3", "", n.titulo)); c.appendChild(meta(n)); a.appendChild(c);
+    const f = foto(n, "thumb"); if (f) a.appendChild(f);
+    li.appendChild(a); o.appendChild(li);
+  });
+  return o;
+}
+function bloco(id, txt, itens, montar) {
+  const b = $(id); b.replaceChildren(); b.hidden = !itens.length;
+  if (!itens.length) return;
+  b.appendChild(titulo(txt)); b.appendChild(montar(itens));
 }
 
-function desenhaHero(n) {
-  const h = $("hero"); h.replaceChildren();
-  if (!n) return;
-  const txt = el("div");
-  const live = el("div", "live"); live.appendChild(el("span", "dot")); const lt = el("span", "", n.t ? "Mais recente, " + rel(n.t) : "Em destaque"); lt.dataset.hero = n.t; live.appendChild(lt);
-  txt.appendChild(live);
-  const h1 = el("h1"); const a = el("a", "", n.titulo); a.href = n.url; a.target = "_blank"; a.rel = "noopener noreferrer"; h1.appendChild(a); txt.appendChild(h1);
-  if (n.descricao) txt.appendChild(el("p", "", n.descricao));
-  const go = el("a", "go", "Ler matéria"); go.href = n.url; go.target = "_blank"; go.rel = "noopener noreferrer"; txt.appendChild(go);
-  h.appendChild(txt);
-  if (n.imagem) {
-    const pic = el("div", "pic"); const im = document.createElement("img"); im.src = n.imagem; im.alt = ""; im.onerror = () => pic.remove(); pic.appendChild(im); h.appendChild(pic);
-  }
-}
-
+/* ---------- desenho da página ---------- */
 function desenha() {
   const q = $("busca").value.trim().toLowerCase();
   const lista = todas.filter((n) => (temaAtivo === "Todos" || n.tema === temaAtivo) && (!q || (n.titulo + " " + n.fonte).toLowerCase().includes(q)));
-  $("lista").replaceChildren();
-  const filtrando = q || temaAtivo !== "Todos";
-  desenhaHero(filtrando ? null : lista[0]);
-  const corpo = filtrando ? lista : lista.slice(1);
+  const filtrando = Boolean(q) || temaAtivo !== "Todos";
   $("status").className = "status";
   $("status").textContent = lista.length ? "" : "Nenhuma notícia encontrada. Tente outro termo ou tema.";
-  const ordem = [], mapa = {};
-  corpo.forEach((n) => { const g = grupo(n.t); if (!mapa[g]) { mapa[g] = []; ordem.push(g); } mapa[g].push(n); });
-  ordem.forEach((g) => {
-    const sec = el("section", "group"); sec.appendChild(el("h2", "", g));
-    const col = el("div"); mapa[g].forEach((n) => col.appendChild(linha(n))); sec.appendChild(col);
-    $("lista").appendChild(sec);
-  });
+
+  const tr = $("trending"); tr.hidden = !todas.length;
+  if (todas.length) { $("trend").textContent = todas[0].titulo; $("trend").href = todas[0].url; }
+
+  const feat = $("feature"); feat.replaceChildren();
+  if (filtrando) {
+    ["split", "mais"].forEach((id) => { $(id).hidden = true; });
+    bloco("results", q ? "Resultados para “" + $("busca").value.trim() + "”" : temaAtivo, lista, gradeCards);
+    return;
+  }
+  $("results").hidden = true;
+  if (lista[0]) { feat.appendChild(hero(lista[0])); if (lista.length > 1) feat.appendChild(painel(lista.slice(1, 6))); }
+  bloco("miss", "Não perca", lista.slice(6, 11), gradeBento);
+  bloco("top", "Top histórias", lista.slice(11, 16), listaTop);
+  $("split").hidden = $("miss").hidden && $("top").hidden;
+  bloco("mais", "Mais notícias", lista.slice(16), gradeCards);
 }
 
 function desenhaTemas() {
   const temas = ["Todos", ...new Set(todas.map((n) => n.tema).filter(Boolean))];
   const box = $("chips"); box.replaceChildren();
-  if (temas.length < 3) return;
+  $("tabs").hidden = temas.length < 3;
   temas.forEach((t) => {
-    const b = el("button", "chip", t); b.type = "button"; b.setAttribute("aria-pressed", String(t === temaAtivo));
+    const b = el("button", "tab", t); b.type = "button"; b.setAttribute("aria-pressed", String(t === temaAtivo));
     b.onclick = () => { temaAtivo = t; desenhaTemas(); desenha(); };
     box.appendChild(b);
   });
@@ -200,30 +181,26 @@ function desenhaTemas() {
 
 function tique() {
   document.querySelectorAll(".time").forEach((e) => { e.textContent = rel(Number(e.dataset.t)); });
-  const hv = document.querySelector("[data-hero]");
-  if (hv && Number(hv.dataset.hero)) hv.textContent = "Mais recente, " + rel(Number(hv.dataset.hero));
-  if (ultimaAtualizacao) $("stamp").textContent = "Atualizado " + (rel(ultimaAtualizacao) === "agora" ? "agora" : rel(ultimaAtualizacao));
+  if (ultima) { const r = rel(ultima); $("stamp").textContent = "Atualizado " + r; }
 }
 
-async function carrega(manual) {
+async function carrega() {
   const btn = $("refresh"); btn.classList.add("spin"); btn.disabled = true;
   try {
     const r = await fetch("/api/noticias");
     if (!r.ok) throw new Error("a API respondeu com erro " + r.status);
-    const dados = await r.json();
     const acha = (d) => {
       if (Array.isArray(d)) return d;
       if (d && typeof d === "object") {
         for (const k of Object.keys(d)) if (Array.isArray(d[k])) return d[k];
-        for (const k of Object.keys(d)) { const r = acha(d[k]); if (r.length) return r; }
+        for (const k of Object.keys(d)) { const x = acha(d[k]); if (x.length) return x; }
       }
       return [];
     };
-    const lista = acha(dados).map(normaliza);
-    lista.sort((a, b) => b.t - a.t);
+    const lista = acha(await r.json()).map(normaliza).sort((a, b) => b.t - a.t);
     const primeira = vistas.size === 0;
     lista.forEach((n) => { n.novo = !primeira && !vistas.has(n.url); vistas.add(n.url); });
-    todas = lista; ultimaAtualizacao = Date.now();
+    todas = lista; ultima = Date.now();
     desenhaTemas(); desenha(); tique();
   } catch (e) {
     $("status").className = "status erro";
@@ -232,16 +209,12 @@ async function carrega(manual) {
   } finally { btn.classList.remove("spin"); btn.disabled = false; }
 }
 
-document.addEventListener("mousemove", (e) => {
-  const p = $("peek"); if (!p.classList.contains("on")) return;
-  const x = Math.min(e.clientX + 24, innerWidth - 300), y = Math.min(e.clientY + 16, innerHeight - 220);
-  p.style.transform = "translate(" + x + "px," + y + "px)";
-});
+$("data").textContent = new Date().toLocaleDateString("pt-BR", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 $("busca").addEventListener("input", desenha);
-$("refresh").addEventListener("click", () => carrega(true));
+$("refresh").addEventListener("click", carrega);
 setInterval(tique, 30000);
-setInterval(() => carrega(false), REFRESH_MS);
-carrega(false);
+setInterval(carrega, REFRESH_MS);
+carrega();
 </script>
 </body>
 </html>
